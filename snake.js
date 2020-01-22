@@ -20,7 +20,8 @@ let fruit={
     y:500,
 }
 
-let seguidor = new Array();
+let seguidorX = new Array();
+let seguidorY = new Array();
 let points = 0;
 
 function setup(){
@@ -34,23 +35,24 @@ function draw(){
     ellipse(pos.x, pos.y, raio,raio);
     fill('red');
     ellipse(fruit.x,fruit.y,raio,raio);
-    fill('black');
-    pos.x+=vel.x;
-    pos.y+=vel.y;
-    textSize(10);
-    text(pos.x + ' , ' + pos.y,30,20);
-    if(pos.x>=larguraWin - 15 || pos.x <= 15){
-        vel.x=0;
-        gameOver();
-    }
-    if(pos.y>=alturaWin -14 || pos.y <= 15){
-        vel.y=0;
-        gameOver();
-    }
     if((pos.x >= fruit.x - raio && pos.x <= fruit.x + raio) && (pos.y >= fruit.y - raio && pos.y <= fruit.y +15)){
         fruit.x=random(30,int(larguraWin)-30);
         fruit.y=random(30,int(alturaWin)-30);
         points++;
+        seguidorX.push();
+    }
+    pos.x+=vel.x;
+    pos.y+=vel.y;
+    textSize(10);
+    fill('black');
+    text(pos.x + ' , ' + pos.y,30,20);
+    if(pos.x>=larguraWin - raio || pos.x <= raio){
+        vel.x=0;
+        gameOver();
+    }
+    if(pos.y>=alturaWin - raio || pos.y <= raio){
+        vel.y=0;
+        gameOver();
     }
     textSize(30)
     text(points,larguraWin-30,alturaWin-20);
